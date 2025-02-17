@@ -1,11 +1,29 @@
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
+
+
+
+
+
 const express = require('express');
+const expressLayouts = require ('express-ejs-layouts');
 const app = express();
-const expressLayouts = require ('express-ejs-layouts')
+
 
 const indexRouter = require('./routes/index.js')
 
-// Setting our view engine (EJS) and layout
 
+//Import and set up mongoDB
+const mongoose = require('mongoose');
+mongoose.connect(process.env.DATABASE_URL);
+const db = mongoose.connection;
+db.on('error', (error) => {console.error(error)});
+db.once('open', () => {console.log('Connected to Mongoose')})
+
+
+
+// Setting our view engine (EJS) and layout
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views')
 app.set('layout', 'layouts/layout')
