@@ -11,7 +11,7 @@ const app = express();
 
 //Importing our app routers
 const indexRouter = require('./routes/index.js')
-
+const authorsRouter = require('./routes/authors.js')
 
 //Import and set up mongoDB
 const mongoose = require('mongoose');
@@ -39,3 +39,4 @@ app.listen(PORT, () => {
 
 //Setting up the routers in the routes folder
 app.use('/', indexRouter);
+app.use('/authors', authorsRouter);
