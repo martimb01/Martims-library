@@ -1,16 +1,15 @@
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
 }
+console.log(process.env.NODE_ENV)
 
 
-
-
-
+//Importing essencial libs for our app
 const express = require('express');
 const expressLayouts = require ('express-ejs-layouts');
 const app = express();
 
-
+//Importing our app routers
 const indexRouter = require('./routes/index.js')
 
 
