@@ -6,8 +6,9 @@ console.log(process.env.NODE_ENV)
 
 //Importing essencial libs for our app
 const express = require('express');
-const expressLayouts = require ('express-ejs-layouts');
 const app = express();
+const expressEjsLayouts = require ('express-ejs-layouts');
+const bodyParser = require('body-parser')
 
 //Importing our app routers
 const indexRouter = require('./routes/index.js')
@@ -26,8 +27,8 @@ db.once('open', () => {console.log('Connected to Mongoose')})
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views')
 app.set('layout', 'layouts/layout')
-app.use(expressLayouts)
-
+app.use(expressEjsLayouts)
+app.use(bodyParser.urlencoded({limit: '10mb', extended: false}))
 // Setting up the location of our static files
 app.use(express.static('public'))
 
