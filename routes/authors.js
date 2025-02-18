@@ -10,6 +10,7 @@ router.get('/', async (req,res) => {
         searchOptions.name = new RegExp(req.query.name, 'i')
     }
     try {
+        console.log(searchOptions)
         const authors = await Author.find(searchOptions)
         res.render('authors/index', {
             authors: authors, 
@@ -29,6 +30,7 @@ router.get('/new', (req,res) => {
 
 // Create new author
 router.post('/', async (req,res) => {
+    console.log('post called')
     const author = new Author({
         name: req.body.name
     })
