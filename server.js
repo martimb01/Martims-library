@@ -13,6 +13,7 @@ const bodyParser = require('body-parser')
 //Importing our app routers
 const indexRouter = require('./routes/index.js')
 const authorsRouter = require('./routes/authors.js')
+const booksRouter = require('./routes/books.js')
 
 //Import and set up mongoDB
 const mongoose = require('mongoose');
@@ -32,12 +33,15 @@ app.use(bodyParser.urlencoded({limit: '10mb', extended: false}))
 // Setting up the location of our static files
 app.use(express.static('public'))
 
+
+
+//Setting up the routers in the routes folder
+app.use('/', indexRouter);
+app.use('/authors', authorsRouter);
+app.use('/books', booksRouter);
+
 //Setting up server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log('Server is listening on port: ' + PORT);
 })
-
-//Setting up the routers in the routes folder
-app.use('/', indexRouter);
-app.use('/authors', authorsRouter);
