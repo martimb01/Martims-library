@@ -47,6 +47,26 @@ router.post('/', async (req,res) => {
 })
 
 
+// GET author by id
+router.get('/:id', (req,res) => {
+    res.send('Show authorr author id:' + req.params.id)
+})
+
+router.get('/:id/edit', (req,res) => {
+    res.send('Edit author author id:' + req.params.id)
+})
+
+router.put('/:id', (req,res) => {
+    res.send('Update author' + req.params.id)
+})
+
+router.delete('/:id', (req,res) => {
+    res.send('Delete author' + req.params.id)
+})
+
+
+
+
 module.exports = router;
 
 

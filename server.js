@@ -9,6 +9,7 @@ const express = require('express');
 const app = express();
 const expressEjsLayouts = require ('express-ejs-layouts');
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
 
 //Importing our app routers
 const indexRouter = require('./routes/index.js')
@@ -29,7 +30,10 @@ app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views')
 app.set('layout', 'layouts/layout')
 app.use(expressEjsLayouts)
+//Setting up body Parser with a size limit of 10mb (because of the cover image)
 app.use(bodyParser.urlencoded({limit: '10mb', extended: false}))
+//Seeting up method override
+app.use(methodOverride('_method'))
 // Setting up the location of our static files
 app.use(express.static('public'))
 

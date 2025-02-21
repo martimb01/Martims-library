@@ -7,4 +7,6 @@
 <br>
 <% authors.forEach (aut => { %>
     <div><%= aut.name %></div>
+    <a href="/authors/<%= aut.id %>">View</a>
+    <a href="/authors/<%= aut.id %>/edit">Edit</a>
 <%})%> 
