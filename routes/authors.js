@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Author = require('../models/author'); 
 const author = require('../models/author');
+const Book = require('../models/book')
 
 
 //GET all authors
@@ -49,8 +50,8 @@ router.post('/', async (req,res) => {
 
 
 // GET author by id
-router.get('/:id', (req,res) => {
-    res.send('Show authorr author id:' + req.params.id)
+router.get('/:id', async (req,res) => {
+ res.send('Show author sdfsd' + req.params.id)
 })
 
 router.get('/:id/edit', async (req,res) => {
@@ -88,10 +89,13 @@ router.put('/:id', async (req,res) => {
 router.delete('/:id', async (req, res) => {
     let author;
     try {
+        console.log('Deleted worked')
         author = await Author.findById(req.params.id);
         await author.deleteOne();
         res.redirect('/authors');
-    } catch {
+    } catch (err) {
+        console.log(err)
+        console.log('Deleted not worked')
         if (author == null) {
             res.redirect('/');
         } else {
