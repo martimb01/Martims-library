@@ -51,7 +51,18 @@ router.post('/', async (req,res) => {
 
 // GET author by id
 router.get('/:id', async (req,res) => {
- res.send('Show author sdfsd' + req.params.id)
+    try{
+        const author = await Author.findById(req.params.id)
+        const books = await Book.find({ author: author.id }).limit(6).exec()
+        res.render('authors/show',
+            {
+                author: author,
+                booksByAuthor: books
+            })
+
+    } catch {
+        res.redirect('/')
+    }
 })
 
 router.get('/:id/edit', async (req,res) => {
