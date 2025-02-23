@@ -1,18 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const Author = require('../models/author'); 
-const author = require('../models/author');
 const Book = require('../models/book')
 
 
-//GET all authors
+//GET All Authors
 router.get('/', async (req,res) => {
     let searchOptions = {}
     if (req.query.name != null && req.query.name !== '') {
         searchOptions.name = new RegExp(req.query.name, 'i')
     }
     try {
-        console.log(searchOptions)
         const authors = await Author.find(searchOptions)
         res.render('authors/index', {
             authors: authors, 
@@ -25,12 +23,12 @@ router.get('/', async (req,res) => {
     
 })
 
-// GET new author
+// GET Create Author Page (renders the page)
 router.get('/new', (req,res) => {
     res.render('authors/new', { author: new Author() })
 })
 
-// Create new author
+// POST to create a new Author
 router.post('/', async (req,res) => {
     console.log('post called')
     const author = new Author({
@@ -49,7 +47,7 @@ router.post('/', async (req,res) => {
 })
 
 
-// GET author by id
+// GET Author by Id (renders his books page)
 router.get('/:id', async (req,res) => {
     try{
         const author = await Author.findById(req.params.id)
@@ -65,6 +63,8 @@ router.get('/:id', async (req,res) => {
     }
 })
 
+
+//GET Author by Id to edit the author (renders authors edit page)
 router.get('/:id/edit', async (req,res) => {
     try{
         const author = await Author.findById(req.params.id)
@@ -77,6 +77,7 @@ router.get('/:id/edit', async (req,res) => {
     
 })
 
+//PUT that updates the Author data (name)
 router.put('/:id', async (req,res) => {
     let author
     try {
@@ -97,6 +98,7 @@ router.put('/:id', async (req,res) => {
     }
 })
 
+//DELETE Author by Id
 router.delete('/:id', async (req, res) => {
     let author;
     try {
