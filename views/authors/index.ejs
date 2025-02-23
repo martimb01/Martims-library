@@ -13,11 +13,13 @@
 </form>
 <br>
 <% authors.forEach(aut => { %>
-    <div><%= aut.name %></div>
-    <div class="btn-row">
-    <a class="btn btn-primary" href="/authors/<%= aut.id %>">View</a>
-    <a class="btn btn-primary" href="/authors/<%= aut.id %>/edit">Edit</a>
-    <%- include('../partials/deleteForm', 
-                { url: `/authors/${aut.id}`}) %>
+    <div class="author-row">
+        <div class="author-name"><%= aut.name %></div>
+        <div class="btn-row">
+        <a class="btn btn-primary" href="/authors/<%= aut.id %>">View</a>
+        <a class="btn btn-primary" href="/authors/<%= aut.id %>/edit">Edit</a>
+        <%- include('../partials/deleteForm', 
+                    { url: `/authors/${aut.id}`}) %>
+    </div>
 </div>
 <% }) %>
