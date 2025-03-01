@@ -1,6 +1,7 @@
 # Martim's Library
 
 Martim's Library is a full stack web app for managing a collection of books and authors.
+It's meant to be a full stack exercise without using front-end frameworks.
 It allows users to add, edit, and delete books and authors, as well as search for books and authors.
 
 The DB is created when the server is ran, so you have to change the DB url as shown in instructions
