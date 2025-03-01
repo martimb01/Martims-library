@@ -30,7 +30,7 @@ router.get('/', async (req,res) => {
 
 })
 
-// GET new book
+// GET new book form
 router.get('/new', async (req,res) => {
     renderNewPage(res, new Book())
 })
@@ -56,7 +56,7 @@ router.post('/', async (req,res) => {
     }
 })
 
-//GET to show book by id
+// GET book details by id
 router.get('/:id', async (req,res) =>{
     try{
         const book = await Book.findById(req.params.id).populate('author').exec()
@@ -68,7 +68,7 @@ router.get('/:id', async (req,res) =>{
     }
 })
 
-// GET to edit book page by id
+/// GET to edit book form by id
 router.get('/:id/edit', async (req,res) => {
     try {
         const book = await Book.findById(req.params.id)
@@ -80,7 +80,7 @@ router.get('/:id/edit', async (req,res) => {
     
 })
 
-// Update Book
+// Update Book by id
 router.put('/:id', async (req,res) => {
     let book 
     try{
@@ -129,6 +129,9 @@ router.delete('/:id', async (req,res) => {
 
 })
 
+
+
+//Helper functions
 async function  renderNewPage(res, book, hasError = false) {
     renderFormPage(res, book, 'new', hasError )
 }

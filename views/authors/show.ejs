@@ -5,7 +5,7 @@
         {url: `/authors/${author.id}` })%>
 </div>
 <% if (booksByAuthor.length > 0){%>
-   <h2 class="page-header">Books by Author</h2>
+   <h2 class="page-header">Books by Author:</h2>
    
 <%- include('../partials/bookGrid', {books: booksByAuthor }) %>
 <% } %>
